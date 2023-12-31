@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Market Stats</h1>
+                <h1>Market Stats</h1>                
                 <li v-for="item in items" :key="item.id">
                     {{ item.name }}
                 </li>
@@ -38,13 +38,13 @@ export default {
         };
     },
     async mounted() {
-        this.fetchData();
+        await this.fetchData();
     },
     methods: {
-        fetchData() {
+        async fetchData() {
             try {
-                let response = getCoinGeckoCoinList();
-                this.items = response.data;
+                let response = await getCoinGeckoCoinList();
+                this.items = response;
             } catch (error) {
                 console.log(error);
             }
