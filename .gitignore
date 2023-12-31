@@ -79,6 +79,9 @@ web_modules/
 .env.production.local
 .env.local
 
+# local env files
+.env.*.local
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -128,3 +131,16 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.DS_Store
+node_modules
+/dist
