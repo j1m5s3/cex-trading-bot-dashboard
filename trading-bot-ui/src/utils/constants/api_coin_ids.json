@@ -1,0 +1,5 @@
+{
+    "coingecko": ["bitcoin", "ethereum", "stellar"],
+    "coinbase": [],
+    "kraken": []
+}

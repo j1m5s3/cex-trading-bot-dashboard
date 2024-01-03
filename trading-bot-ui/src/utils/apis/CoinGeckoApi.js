@@ -32,9 +32,8 @@ export const getCoinGeckoOHLCData = async (coin_id, currency, days) => {
     days: days
   };
 
-
   console.log('Making request to: ' + url)
-  cg_res = await axios.get(url,{}, {params: params}).then(response => {
+  cg_res = await axios.get(url, {params: params}).then(response => {
     if (response.status != 200) {
       throw new Error('Error fetching coin list');
     }
@@ -44,5 +43,6 @@ export const getCoinGeckoOHLCData = async (coin_id, currency, days) => {
   });
 
   console.log('Got response from: ' + url);
+  console.log("cg_res --> ", cg_res);
   return cg_res;
 }
