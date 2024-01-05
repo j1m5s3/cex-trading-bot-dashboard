@@ -1,10 +1,13 @@
 <script>
 import MarketStats from './items/MarketStats.vue'
 import CryptoDropdown from './items/CryptoDropdown.vue'
+import BotDeploy from './items/BotDeploy.vue';
+
 export default {
     components: {
         MarketStats,
-        CryptoDropdown
+        CryptoDropdown,
+        BotDeploy
     },
     data() {
         return {
@@ -32,7 +35,7 @@ export default {
             </b-col>
             <b-col class="mb-3 mx-3">
                 <b-card title="Deploy Configuration" class="rounded">
-                    <p>Strategy Configuration</p>
+                    <BotDeploy />
                 </b-card>
             </b-col>
         </b-row>

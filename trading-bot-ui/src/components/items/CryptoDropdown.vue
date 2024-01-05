@@ -1,6 +1,12 @@
 <template>
     <div id="market-dropdown">
-        <v-select label="coinId" :options="cryptos" v-model="selectedCrypto" @input="setSelected" />
+        <v-select 
+        label="coinId" 
+        :options="cryptos" 
+        v-model="selectedCrypto" 
+        @input="setSelected" 
+        :menu-props="{ style: { fontSize: '36px' } }" 
+        />
     </div>
 </template>
 
