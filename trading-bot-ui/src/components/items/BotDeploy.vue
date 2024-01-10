@@ -22,7 +22,7 @@
             <b-row class="mb-3 mx-3">
                 <label for="fixed_order_size">Fixed Order Size:</label>
                 <input type="number" id="fixed_order_size" v-model="formData.fixed_order_size"
-                    placeholder="Enter Fixed Order Size" required />
+                    placeholder="Enter Fixed Order Size" step="any" required />
             </b-row>
 
             <b-row class="mb-3 mx-3">
@@ -98,6 +98,7 @@ form label {
 }
 </style>
 <script>
+import { postDeployBot } from '../../utils/apis/BotApi';
 export default {
     data() {
         return {
@@ -121,10 +122,10 @@ export default {
         async submitForm() {
             try {
                 // Assuming you have an API endpoint to send data to
-                const response = await this.$axios.post('your/api/endpoint', this.formData);
+                const response = await postDeployBot(this.formData);
                 console.log('API response:', response);
                 // Optionally, reset the form after successful submission
-                this.resetForm();
+                //this.resetForm();
             } catch (error) {
                 console.error('Error submitting form:', error);
             }
