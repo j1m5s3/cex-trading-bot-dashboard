@@ -34,4 +34,21 @@ export const getDeployedBotsStatus = async () => {
     console.log('Got response from: ' + url);
     console.log(res);
     return res;
-}   
+}
+
+export const postLogin = async (payload) => {
+    let url = base_url + '/login';
+    let res;
+    console.log('Making request to: ' + url)
+    res = await axios.post(url, payload).then(response => {
+        if (response.status != 200) {
+        throw new Error('Error logging in');
+        }
+        return response.data;
+    }).catch(error => {
+        console.error('ERROR: ', error);
+    });
+    console.log('Got response from: ' + url);
+    console.log(res);
+    return res;
+}
