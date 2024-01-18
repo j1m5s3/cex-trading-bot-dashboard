@@ -23,7 +23,7 @@ export default {
         chart: {
           type: 'candlestick',
           background: '#A9A9A9',
-          height: 350,
+          height: "100%",
         },
         title: {
           text: this.selectedCrypto.toUpperCase(),  // Set initial title,
@@ -52,7 +52,7 @@ export default {
         chart: {
           type: 'candlestick',
           background: '#A9A9A9',
-          height: 350,
+          height: 700,
         },
         title: {
           text: this.selectedCrypto.toUpperCase(),  // Set initial title,

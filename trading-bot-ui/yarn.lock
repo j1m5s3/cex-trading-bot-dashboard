@@ -6029,6 +6029,11 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     watchpack "^2.4.0"
 
+vue-loading-button@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/vue-loading-button/-/vue-loading-button-0.2.0.tgz#1e5f8bec0d79a2b6eb2a256d6e21b84e9d88449e"
+  integrity sha512-HjlNzS2deIaXGr7cZU/J/SiaZfA6OvJC+vzujTohUCs0cF+6G9p4SfTquT4watDFl5m3yO4OBEaxhE99JQLBNA==
+
 vue-select@^3.20.2:
   version "3.20.2"
   resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-3.20.2.tgz#eaa15012b032c154d4fb51ac82ebeda2beeae54b"

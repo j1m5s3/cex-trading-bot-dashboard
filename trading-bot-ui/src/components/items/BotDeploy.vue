@@ -71,12 +71,24 @@
                 <input type="checkbox" id="accumulate_cash" v-model="formData.accumulate_cash" />
             </b-row>
 
-
-            <button type="submit">Deploy Bot</button>
+            <VueLoadingButton 
+            aria-label="Deploy Bot" 
+            class="button" 
+            @click.native="submitForm" 
+            :loading="isLoading">
+            Deploy Bot
+            </VueLoadingButton>
         </form>
     </div>
 </template>
 <style scoped>
+.button {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -99,7 +111,11 @@ form label {
 </style>
 <script>
 import { postDeployBot } from '../../utils/apis/BotApi';
+import VueLoadingButton from 'vue-loading-button';
 export default {
+    components: {
+        VueLoadingButton
+    },
     data() {
         return {
             formData: {
@@ -116,16 +132,18 @@ export default {
                 accumulate_asset: false,
                 accumulate_cash: true,
             },
+            isLoading: false,
         };
     },
     methods: {
         async submitForm() {
             try {
-                // Assuming you have an API endpoint to send data to
-                const response = await postDeployBot(this.formData);
-                console.log('API response:', response);
-                // Optionally, reset the form after successful submission
-                //this.resetForm();
+                this.isLoading = true;
+                setTimeout(async () => {
+                    const response = await postDeployBot(this.formData);
+                    console.log('API response:', response);
+                    this.isLoading = false;
+                }, 3000);
             } catch (error) {
                 console.error('Error submitting form:', error);
             }
