@@ -42,7 +42,7 @@ export default {
             </b-col>
         </b-row>
         <b-row class="bot-status-row">
-            <b-col class="mb-3 mx-3" cols="12" md="8">
+            <b-col class="mb-3 mx-3" >
                 <b-card title="Active Bots" class="rounded" bg-variant="dark">
                    <BotsStats />
                 </b-card>
@@ -69,9 +69,11 @@ export default {
 }
 
 .card {
-  border: 2px solid #000; /* Black border */
+  border: 10px solid #000; /* Black border */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Drop shadow */
   font-weight: bold; /* Bold text */
+  height: 50%;
+  width: 100%;
 }
 
 .card:hover {

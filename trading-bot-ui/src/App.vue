@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <b-row>
-      <b-col>
-        <button class="btn btn-primary" @click="showLoginForm">Login</button>
-        <b-modal v-model="showLoginModal" title="Login" @close="close" hide-footer>
+    <b-row class="button-row">
+      <b-col class="btn-col">
+        <button class="btn btn-outline-primary btn-lg" @click="showLoginForm" title="Login"> {{ loginStatus }} </button>
+        <b-modal v-model="showModal" title="Login" @close="close" hide-footer>
           <!-- Your login form goes here -->
           <form @submit.prevent="login">
             <b-form-group label="Username">
@@ -13,16 +13,27 @@
               <b-form-input type="password" v-model="formData.password" required></b-form-input>
             </b-form-group>
             <VueLoadingButton aria-label="Login" class="button" @click.native="login" :loading="isLoading">
-              Login
+              {{ loginStatus }}
             </VueLoadingButton>
           </form>
         </b-modal>
+
+        <a href="https://personal-asset-manager-read-the-docs.readthedocs.io/en/latest/" class="btn btn-docs" target="_blank">
+          <button class="btn btn-outline-info btn-lg" title="Docs">
+            <b-icon icon="book" aria-hidden="true"></b-icon>
+            <span class="sr-only">Read the Docs</span>
+          </button>
+        </a>
       </b-col>
     </b-row>
     <div class="center-container">
       <div class="logo-container">
         <img class="circular-logo" alt="Vue logo" src="./assets/robot_trading_logo_cropped.png">
       </div>
+    </div>
+    <div>
+      <h1 class="display-4">P.A.M</h1>
+      <p class="lead">A personal asset manager that uses trading and yield strategies to manage your digital assets.</p>
     </div>
     <UserDashboard />
   </div>
@@ -41,10 +52,12 @@ export default {
   },
   data() {
     return {
-      showLoginModal: false,
+      showModal: false,
       isError: false,
       isLoading: false,
       isLoggedIn: false,
+      loginStatus: localStorage.getItem('username') || 'Login',
+      username: '',
       formData: {
         username: '',
         password: '',
@@ -53,11 +66,11 @@ export default {
   },
   methods: {
     showLoginForm() {
-      this.showLoginModal = true;
+      this.showModal = true;
     },
     login() {
       // Implement your login logic here
-      console.log('Logging in with:', this.username, this.password);
+      console.log('Logging in with:', this.formData.username, this.formData.password);
       // Close the modal after login
       this.isLoading = true;
       setTimeout(async () => {
@@ -71,14 +84,18 @@ export default {
           this.isError = true;
         }
         this.isLoading = false;
-      }, 3000);
+        this.loginStatus = 'Login';
 
-      if (this.isLoggedIn) {
-        this.showLoginModal = false;
-      }
+        if (this.isLoggedIn) {
+          console.log('Login successful');
+          this.loginStatus = this.formData.username;
+          this.showModal = false;
+        }
+        localStorage.setItem('username', this.formData.username);
+      }, 3000);
     },
     close() {
-      this.showLoginModal = false;
+      this.showModal = false;
     }
   }
 }
@@ -93,7 +110,6 @@ export default {
   background-color: grey;
   background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(67, 67, 71) 35%, rgb(206, 146, 14) 100%);
   color: green;
-  margin-top: 60px;
 }
 
 .center-container {
@@ -123,4 +139,13 @@ export default {
   height: 100%;
   object-fit: cover;
   /* Preserve aspect ratio and cover the entire container */
-}</style>
+}
+
+.btn-col {
+  text-align: left; /* Align buttons to the left */
+}
+
+.button-row {
+  justify-content: flex-start; /* Align row content to the start (left) */
+}
+</style>

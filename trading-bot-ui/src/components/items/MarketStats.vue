@@ -19,11 +19,12 @@ export default {
   data() {
     return {
       items: [],
+      chartHeight: '100%',
       chartOptions: {
         chart: {
           type: 'candlestick',
           background: '#A9A9A9',
-          height: "100%",
+          height: this.chartHeight,
         },
         title: {
           text: this.selectedCrypto.toUpperCase(),  // Set initial title,
@@ -52,7 +53,7 @@ export default {
         chart: {
           type: 'candlestick',
           background: '#A9A9A9',
-          height: 700,
+          height: this.chartHeight,
         },
         title: {
           text: this.selectedCrypto.toUpperCase(),  // Set initial title,
@@ -66,6 +67,10 @@ export default {
   },
   async mounted() {
     await this.fetchData(this.selectedCrypto);
+
+    setTimeout(() => {
+      this.chartHeight = '100%';
+    }, 1000);
   },
   watch: {
     selectedCrypto(newCrypto) {

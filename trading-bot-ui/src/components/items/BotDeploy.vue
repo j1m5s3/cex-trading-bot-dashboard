@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" class="bot-form">
             <b-row class="mb-3 mx-3">
                 <label for="coinbase_api_key">Coinbase API Key:</label>
                 <input type="text" id="coinbase_api_key" v-model="formData.coinbase_api_key"
@@ -43,6 +43,8 @@
                     <option value="ETH">ETH</option>
                     <option value="XLM">XLM</option>
                     <option value="BTC">BTC</option>
+                    <option value="ARB">ARB</option>
+                    <option value="OP">OP</option>
                 </select>
             </b-row>
 
@@ -89,24 +91,40 @@
     padding: 10px;
     margin-top: 20px;
 }
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 75%;
+    width: 50%;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 5px solid #ccc;
     border-radius: 5px;
 }
 
 form label {
     font-weight: bold;
     display: block;
-    margin-bottom: 5px;
-    margin-top: 10px;
     margin-right: 15px;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="checkbox"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-top: 10px;
 }
 </style>
 <script>
@@ -143,6 +161,7 @@ export default {
                     const response = await postDeployBot(this.formData);
                     console.log('API response:', response);
                     this.isLoading = false;
+                    window.location.reload();
                 }, 3000);
             } catch (error) {
                 console.error('Error submitting form:', error);

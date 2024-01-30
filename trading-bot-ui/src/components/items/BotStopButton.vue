@@ -1,14 +1,13 @@
 <template>
     <div class="container">
-        <b-col>
-            <VueLoadingButton aria-label="Stop Bot" class="button" @click.native="stopBot" :loading="isLoading">
-                Stop
-            </VueLoadingButton>
-        </b-col>
+        <VueLoadingButton aria-label="Stop Bot" class="button" @click.native="stopBot" :loading="isLoading">
+            Stop
+        </VueLoadingButton>
     </div>
 </template>
 
 <script>
+import { deleteKillBot } from '../../utils/apis/BotApi';
 import VueLoadingButton from 'vue-loading-button';
 
 export default {
@@ -32,12 +31,18 @@ export default {
           // Fetch data from API
           this.isLoading = true;
           setTimeout(async () => {
-            //const response = await stopBot();
-            console.log("botId --> ", this.botId);
+            const response = await deleteKillBot({ bot_id: this.botId });
+            if (response.killed) {
+              console.log('Bot stopped');
+            }
+            else {
+              console.log('Bot stop failed');
+            }
             this.isLoading = false;
+            window.location.reload();
           }, 3000);
         } catch (error) {
-          console.error('Error submitting form:', error);
+          console.error('Error killing bot:', error);
         }
       },
     },
